@@ -7,13 +7,15 @@ import 'package:spotipyt/core/configs/theme/app_theme.dart';
 import 'package:spotipyt/presentation/choose_mode/bloc/theme_cubit.dart';
 import 'package:spotipyt/presentation/splash/pages/splash.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: kIsWeb
-        ? HydratedStorageDirectory.web
-        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+    storageDirectory:
+        kIsWeb
+            // ? HydratedStorageDirectory.webStorageDirectory
+            // : await getApplicationDocumentsDirectory(),
+            ? HydratedStorageDirectory.web
+            : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
   runApp(const MyApp());
 }
@@ -24,20 +26,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<ThemeCubit>(create: (_) => ThemeCubit())
-      ],
-      child: BlocBuilder<ThemeCubit,ThemeMode>(
-        builder: (context, mode) => MaterialApp(
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: mode,
-          debugShowCheckedModeBanner: false,
-          home: const SplashPage()
-        ),
+      providers: [BlocProvider<ThemeCubit>(create: (_) => ThemeCubit())],
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder:
+            (context, mode) => MaterialApp(
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: mode,
+              debugShowCheckedModeBanner: false,
+              home: const SplashPage(),
+            ),
       ),
     );
   }
+
   // State<MyApp> createState() => _MyAppState();
 }
 

@@ -16,10 +16,7 @@ class GetStartedPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 40,
-              vertical: 40
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fill,
@@ -28,56 +25,50 @@ class GetStartedPage extends StatelessWidget {
             ),
           ),
 
-          Container(
-            color: Colors.black.withOpacity(0.15),
-          ),
+          Container(color: Colors.black.withOpacity(0.15)),
 
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 40,
-              vertical: 40
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
             child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: SvgPicture.asset(
-                      AppVectors.logo,
-                    ),
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: SvgPicture.asset(AppVectors.logo),
+                ),
+                Spacer(),
+                Text(
+                  'Enjoy listening to music',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
-                  Spacer(),
-                  Text(
-                    'Enjoy listening to music',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white
-                    ),
+                ),
+                SizedBox(height: 21),
+                Text(
+                  'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.grey,
                   ),
-                  SizedBox(height: 21),
-                  Text(
-                    'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.grey
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20,),
-                  BasicAppButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => const ChooseModePage()
-                        )
-                      );
-                    },
-                    title: 'Get Started',
-                  )
-                ],
-              ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20),
+                BasicAppButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (BuildContext context) => const ChooseModePage(),
+                      ),
+                    );
+                  },
+                  title: 'Get Started',
+                ),
+              ],
+            ),
           ),
         ],
       ),
