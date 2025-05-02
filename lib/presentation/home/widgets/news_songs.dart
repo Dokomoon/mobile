@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotipyt/core/configs/constants/app_urls.dart';
+import 'package:spotipyt/core/configs/theme/app_colors.dart';
 import 'package:spotipyt/domain/entities/song/song.dart';
 import 'package:spotipyt/presentation/home/bloc/news_songs_cubit.dart';
 import 'package:spotipyt/presentation/home/bloc/news_songs_state.dart';
@@ -19,7 +20,7 @@ class NewsSongs extends StatelessWidget {
             if (state is NewsSongsLoading) {
               return Container(
                 alignment: Alignment.center,
-                child: CircularProgressIndicator(),
+                child: const CircularProgressIndicator(),
               );
             }
             if (state is NewsSongsLoaded) {
@@ -40,6 +41,7 @@ class NewsSongs extends StatelessWidget {
         return SizedBox(
           width: 160,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Container(
@@ -48,14 +50,35 @@ class NewsSongs extends StatelessWidget {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                        '${AppURLs.firestorage}${songs[index].artist} - ${songs[index].title}.jpg${AppURLs.mediaAlt}',
+                        '${AppURLs.firestorage}${songs[index].artist} - ${songs[index].title}.jpg?${AppURLs.mediaAlt}',
+                      ),
+                    ),
+                  ),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      transform: Matrix4.translationValues(10, 10, 0),
+                      child: Icon(Icons.play_arrow_rounded),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.darkGrey,
                       ),
                     ),
                   ),
                 ),
               ),
               SizedBox(height: 10),
-              Text(songs[index].title),
+              Text(
+                songs[index].title,
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+              ),
+              SizedBox(height: 10),
+              Text(
+                songs[index].artist,
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
+              ),
             ],
           ),
         );

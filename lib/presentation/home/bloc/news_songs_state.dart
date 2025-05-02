@@ -9,4 +9,4 @@ class NewsSongsLoaded extends NewsSongsState {
   NewsSongsLoaded({required this.songs});
 }
 
-class NewsSongsLoadFailure extends NewsSongsLoading {}
+class NewsSongsLoadFailure extends NewsSongsState {}

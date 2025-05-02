@@ -15,7 +15,7 @@ final sl = GetIt.instance;
 Future<void> initializeDependencies() async {
   sl.registerSingleton<AuthFirebaseService>(AuthFirebaseServiceImpl());
 
-  sl.registerSingleton<SongFireBaseService>(SongFirebaseServiceImpl());
+  sl.registerSingleton<SongFirebaseService>(SongFirebaseServiceImpl());
 
   sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
 
