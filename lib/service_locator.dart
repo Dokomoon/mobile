@@ -4,6 +4,7 @@ import 'package:spotipyt/data/sources/auth/auth_firebase_service.dart';
 import 'package:spotipyt/domain/repository/auth/auth.dart';
 import 'package:spotipyt/domain/usecases/auth/signup.dart';
 import 'package:spotipyt/domain/usecases/song/get_news_songs.dart';
+import 'package:spotipyt/domain/usecases/song/get_play_list.dart';
 
 import 'data/repository/song/song_repository_impl.dart';
 import 'data/sources/song/song_firebase_service.dart';
@@ -26,4 +27,6 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<SigninUseCase>(SigninUseCase());
 
   sl.registerSingleton<GetNewsSongsUseCase>(GetNewsSongsUseCase());
+
+  sl.registerSingleton<GetPlayListUseCase>(GetPlayListUseCase());
 }

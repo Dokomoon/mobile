@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spotipyt/common/helpers/is_dark_mode.dart';
 import 'package:spotipyt/core/configs/constants/app_urls.dart';
 import 'package:spotipyt/core/configs/theme/app_colors.dart';
 import 'package:spotipyt/domain/entities/song/song.dart';
@@ -60,10 +61,19 @@ class NewsSongs extends StatelessWidget {
                       height: 40,
                       width: 40,
                       transform: Matrix4.translationValues(10, 10, 0),
-                      child: Icon(Icons.play_arrow_rounded),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppColors.darkGrey,
+                        color:
+                            context.isDarkMode
+                                ? AppColors.darkGrey
+                                : Color(0xffe6e6e6),
+                      ),
+                      child: Icon(
+                        Icons.play_arrow_rounded,
+                        color:
+                            context.isDarkMode
+                                ? Color(0xff959595)
+                                : Color(0xff555555),
                       ),
                     ),
                   ),
