@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotipyt/common/helpers/is_dark_mode.dart';
+import 'package:spotipyt/common/widgets/appbar/app_bar.dart';
 import 'package:spotipyt/common/widgets/button/basic_app_button.dart';
 import 'package:spotipyt/core/configs/assets/app_images.dart';
 import 'package:spotipyt/core/configs/assets/app_vectors.dart';
@@ -8,10 +9,8 @@ import 'package:spotipyt/core/configs/theme/app_colors.dart';
 import 'package:spotipyt/presentation/auth/pages/signin.dart';
 import 'package:spotipyt/presentation/auth/pages/signup.dart';
 
-import '../../../common/widgets/appbar/app_bar.dart';
-
-class SignupOrSigininPage extends StatelessWidget {
-  const SignupOrSigininPage({super.key});
+class SignupOrSigninPage extends StatelessWidget {
+  const SignupOrSigninPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +30,11 @@ class SignupOrSigininPage extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Image.asset(AppImages.authBG),
           ),
+
           Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,12 +42,12 @@ class SignupOrSigininPage extends StatelessWidget {
                   SvgPicture.asset(AppVectors.logo),
                   const SizedBox(height: 55),
                   const Text(
-                    'Enjoy listening to music',
+                    'Enjoy Listening To Music',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   const SizedBox(height: 21),
                   const Text(
-                    'Spotify is a proprietary Swedish audio streaming and media services provider',
+                    'Spotify is a proprietary Swedish audio streaming and media services provider ',
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
@@ -73,7 +73,7 @@ class SignupOrSigininPage extends StatelessWidget {
                           title: 'Register',
                         ),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       Expanded(
                         flex: 1,
                         child: TextButton(

@@ -6,6 +6,6 @@ class CreateUserReq {
   CreateUserReq({
     required this.fullName,
     required this.email,
-    required this.password,
+    required this.password
   });
 }

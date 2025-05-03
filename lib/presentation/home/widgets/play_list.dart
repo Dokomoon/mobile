@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotipyt/common/helpers/is_dark_mode.dart';
 import 'package:spotipyt/core/configs/theme/app_colors.dart';
-import 'package:spotipyt/domain/entities/song/song.dart';
+import 'package:spotipyt/presentation/home/bloc/play_list_cubit.dart';
+
+import '../../../common/widgets/favorite_button/favorite_button.dart';
+import '../../../domain/entities/song/song.dart';
+import '../../song_player/pages/song_player.dart';
+import '../bloc/play_list_state.dart';
 
 class PlayList extends StatelessWidget {
   const PlayList({super.key});

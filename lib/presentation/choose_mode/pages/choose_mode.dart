@@ -17,11 +17,12 @@ class ChooseModePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.lightBackground,
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: AssetImage(AppImages.chooseModeBG),
@@ -32,23 +33,23 @@ class ChooseModePage extends StatelessWidget {
           Container(color: Colors.black.withOpacity(0.15)),
 
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
+            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
             child: Column(
               children: [
                 Align(
                   alignment: Alignment.topCenter,
                   child: SvgPicture.asset(AppVectors.logo),
                 ),
-                Spacer(),
-                Text(
-                  'Choose mode',
+                const Spacer(),
+                const Text(
+                  'Choose Mode',
                   style: TextStyle(
-                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
+                    fontSize: 18,
                   ),
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -67,7 +68,9 @@ class ChooseModePage extends StatelessWidget {
                                 height: 80,
                                 width: 80,
                                 decoration: BoxDecoration(
-                                  color: Color(0xff30393c).withOpacity(0.5),
+                                  color: const Color(
+                                    0xff30393C,
+                                  ).withOpacity(0.5),
                                   shape: BoxShape.circle,
                                 ),
                                 child: SvgPicture.asset(
@@ -78,18 +81,18 @@ class ChooseModePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 15),
-                        Text(
-                          'Dark mode',
+                        const SizedBox(height: 15),
+                        const Text(
+                          'Dark Mode',
                           style: TextStyle(
-                            fontSize: 17,
                             fontWeight: FontWeight.w500,
+                            fontSize: 17,
                             color: AppColors.grey,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(width: 40),
+                    const SizedBox(width: 40),
                     Column(
                       children: [
                         GestureDetector(
@@ -105,7 +108,9 @@ class ChooseModePage extends StatelessWidget {
                                 height: 80,
                                 width: 80,
                                 decoration: BoxDecoration(
-                                  color: Color(0xff30393c).withOpacity(0.5),
+                                  color: const Color(
+                                    0xff30393C,
+                                  ).withOpacity(0.5),
                                   shape: BoxShape.circle,
                                 ),
                                 child: SvgPicture.asset(
@@ -116,12 +121,12 @@ class ChooseModePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 15),
-                        Text(
-                          'Light mode',
+                        const SizedBox(height: 15),
+                        const Text(
+                          'Light Mode',
                           style: TextStyle(
-                            fontSize: 17,
                             fontWeight: FontWeight.w500,
+                            fontSize: 17,
                             color: AppColors.grey,
                           ),
                         ),
@@ -129,7 +134,7 @@ class ChooseModePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 BasicAppButton(
                   onPressed: () {
                     Navigator.push(
@@ -137,7 +142,7 @@ class ChooseModePage extends StatelessWidget {
                       MaterialPageRoute(
                         builder:
                             (BuildContext context) =>
-                                const SignupOrSigininPage(),
+                                const SignupOrSigninPage(),
                       ),
                     );
                   },

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../core/configs/assets/app_vectors.dart';
-import '../../intro/pages/get_started.dart';
+import 'package:spotipyt/core/configs/assets/app_vectors.dart';
+import 'package:spotipyt/presentation/intro/pages/get_started.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -12,7 +11,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   @override
   void initState() {
     super.initState();
@@ -21,13 +19,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SvgPicture.asset(
-          AppVectors.logo
-        )
-      ),
-    );
+    return Scaffold(body: Center(child: SvgPicture.asset(AppVectors.logo)));
   }
 
   Future<void> redirect() async {
@@ -35,8 +27,8 @@ class _SplashPageState extends State<SplashPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => GetStartedPage()
-      )
+        builder: (BuildContext context) => const GetStartedPage(),
+      ),
     );
   }
 }

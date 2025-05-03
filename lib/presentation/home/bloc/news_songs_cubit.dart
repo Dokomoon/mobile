@@ -9,7 +9,6 @@ class NewsSongsCubit extends Cubit<NewsSongsState> {
 
   Future<void> getNewsSongs() async {
     var returnedSongs = await sl<GetNewsSongsUseCase>().call();
-
     returnedSongs.fold(
       (l) {
         emit(NewsSongsLoadFailure());

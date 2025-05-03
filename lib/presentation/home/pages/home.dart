@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotipyt/common/helpers/is_dark_mode.dart';
 import 'package:spotipyt/core/configs/assets/app_images.dart';
 import 'package:spotipyt/core/configs/theme/app_colors.dart';
 import 'package:spotipyt/presentation/home/widgets/news_songs.dart';
+import 'package:spotipyt/presentation/home/widgets/play_list.dart';
+import 'package:spotipyt/presentation/profile/pages/profile.dart';
 
 import '../../../common/widgets/appbar/app_bar.dart';
 import '../../../core/configs/assets/app_vectors.dart';
@@ -30,6 +32,17 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: BasicAppbar(
         hideBack: true,
+        action: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const ProfilePage(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.person),
+        ),
         title: SvgPicture.asset(AppVectors.logo, height: 40, width: 40),
       ),
       body: SingleChildScrollView(
@@ -50,6 +63,7 @@ class _HomePageState extends State<HomePage>
                 ],
               ),
             ),
+            const PlayList(),
           ],
         ),
       ),
@@ -66,7 +80,6 @@ class _HomePageState extends State<HomePage>
               alignment: Alignment.bottomCenter,
               child: SvgPicture.asset(AppVectors.homeTopCard),
             ),
-
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(

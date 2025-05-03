@@ -1,12 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:spotipyt/core/configs/constants/app_urls.dart';
 import 'package:spotipyt/data/models/auth/create_user_req.dart';
 import 'package:spotipyt/data/models/auth/signin_user_req.dart';
+import 'package:spotipyt/data/models/auth/user.dart';
+import 'package:spotipyt/domain/entities/auth/user.dart';
 
 abstract class AuthFirebaseService {
   Future<Either> signup(CreateUserReq createUserReq);
+
   Future<Either> signin(SigninUserReq signinUserReq);
+
+  Future<Either> getUser();
 }
 
 class AuthFirebaseServiceImpl extends AuthFirebaseService {
@@ -18,17 +24,17 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
         password: signinUserReq.password,
       );
 
-      return const Right('Signin was Succesfull');
+      return const Right('Signin was Successful');
     } on FirebaseAuthException catch (e) {
-      String messega = '';
+      String message = '';
 
       if (e.code == 'invalid-email') {
-        messega = 'Not user found for that email';
+        message = 'Not user found for that email';
       } else if (e.code == 'invalid-credential') {
-        messega = 'Wrong password provided for that user';
+        message = 'Wrong password provided for that user';
       }
 
-      return Left(messega);
+      return Left(message);
     }
   }
 
@@ -40,22 +46,44 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
         password: createUserReq.password,
       );
 
-      FirebaseFirestore.instance.collection('Users').add({
+      FirebaseFirestore.instance.collection('Users').doc(data.user?.uid).set({
         'name': createUserReq.fullName,
         'email': data.user?.email,
       });
 
-      return const Right('Signup was Succesfull');
+      return const Right('Signup was Successful');
     } on FirebaseAuthException catch (e) {
-      String messega = '';
+      String message = '';
 
       if (e.code == 'weak-password') {
-        messega = 'The password provided is too weak';
-      } else if (e.code == 'email=already-in-use') {
-        messega = 'An account already exists with that email.';
+        message = 'The password provided is too weak';
+      } else if (e.code == 'email-already-in-use') {
+        message = 'An account already exists with that email.';
       }
 
-      return Left(messega);
+      return Left(message);
+    }
+  }
+
+  @override
+  Future<Either> getUser() async {
+    try {
+      FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+      var user =
+          await firebaseFirestore
+              .collection('Users')
+              .doc(firebaseAuth.currentUser?.uid)
+              .get();
+
+      UserModel userModel = UserModel.fromJson(user.data()!);
+      userModel.imageURL =
+          firebaseAuth.currentUser?.photoURL ?? AppURLs.defaultImage;
+      UserEntity userEntity = userModel.toEntity();
+      return Right(userEntity);
+    } catch (e) {
+      return const Left('An error occurred');
     }
   }
 }

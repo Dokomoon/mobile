@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotipyt/common/widgets/appbar/app_bar.dart';
 import 'package:spotipyt/common/widgets/button/basic_app_button.dart';
 import 'package:spotipyt/core/configs/assets/app_vectors.dart';
@@ -44,7 +44,10 @@ class SigninPage extends StatelessWidget {
                 );
                 result.fold(
                   (l) {
-                    var snackbar = SnackBar(content: Text(l));
+                    var snackbar = SnackBar(
+                      content: Text(l),
+                      behavior: SnackBarBehavior.floating,
+                    );
                     ScaffoldMessenger.of(context).showSnackBar(snackbar);
                   },
                   (r) {
@@ -99,7 +102,7 @@ class SigninPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Not A Member?',
+            'Not A Member? ',
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
           ),
           TextButton(
